@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns = "http://www.w3.org/ns/widgets"
+xmlns:gap = "http://phonegap.com/ns/1.0"
+id        = "com.phonegap.example"
+version   = "0.0.1">
+
+<!-- http://android-ui-utils.googlecode.com/ awesome tools for icon and background       resizing! -->
+
+<name>Hello</name>
+
+//icons
+<icon src="mdpi.png" gap:platform="android" gap:density="mdpi" />
+
+<description>
+Test
+</description>
+
+<author href="https://www.vizhole.com" email="willy819@gmx.com">
+Willy
+</author>
+
+<preference 
+name="exit-on-suspend" value="true"  
+name="permissions" value="none" 
+/>
+
+</widget>
