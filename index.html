@@ -61,6 +61,51 @@ var app = {
 </script>
 
 
+<script>	
+function bind(indexno){
+	alert(indexno);
+	var _date = $("#" + indexno + "date").html();
+	var _title = $("#" + indexno + "title").html(); 
+	var _desc =$("#" + indexno + "desc").html();
+	$('#page2 h1').append( _title );
+	$('#page2 .output').append( _desc );
+}	
+$(document).ready(function(){
+
+
+	var output = $('#page .output');
+
+	$.ajax({
+	//	url: 'http://triangon.com/phonegap-mysql/conex.php',
+		url: 'http://dosukyou.tk/wordpress/?json=1',
+		dataType: 'json',
+		jsonp: 'jsoncallback',
+		timeout: 5000,
+		success: function(data, status){
+			$.each(data, function(i,obj){
+				
+				if(typeof obj == "object" && obj.length == 10 ) {
+					
+					$.each(obj, function(z, item) {
+						//alert(val.post_title);
+					
+				// ui-li-has-thumb 
+					var landmark = '<li class="ui-btn ui-btn-icon-right ui-li ui-btn-down-c ui-btn-up-c"><div class="ui-btn-inner"><a onclick="bind('+z+');" href="#page2" style="padding-top:0px" class="ui-link-inherit"><div class="ui-btn-text"><h3 id="'+z+'title">' + item.post_title + '</h3>'
+				+ '<p id="'+z+'date" class="ui-li-desc">'+item.post_date_gmt+'</p><div style="display:none" id="'+z+'desc">'+item.post_content+'</div></a><span class="ui-icon ui-icon-arrow-r"></span></li>';
+
+						output.append(landmark);
+					
+					});
+				}
+				
+			});
+		},
+		error: function(){
+			output.text('Hubo un error al cargar los datos');
+		}
+	});
+});		
+</script>
 	
 </head> 
 <body> 
