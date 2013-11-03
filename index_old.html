@@ -45,7 +45,7 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
 
-		app.receivedEvent('deviceready');
+    //    app.receivedEvent('deviceready');
 				
     },
     // Update DOM on a Received Event
@@ -74,16 +74,32 @@ function bind(indexno){
 
 $(document).ready(function (){
 
-		var output = $('#output');
+		var output = $('#page .output');
 
 		$.ajax({
 		//	url: 'http://triangon.com/phonegap-mysql/conex.php',
-			url: 'http://dosukyou.tk/wordpress/',
-			dataType: 'html',
+			url: 'http://dosukyou.tk/wordpress/?json=1',
+			dataType: 'json',
+			jsonp: 'jsoncallback',
 			timeout: 5000,
 			success: function(data, status){
-				$('.listening').hide();
-				output.append(data);
+				$.each(data, function(i,obj){
+					
+					if(typeof obj == "object" && obj.length == 10 ) {
+						
+						$.each(obj, function(z, item) {
+							//alert(val.post_title);
+						
+					// ui-li-has-thumb 
+						var landmark = '<li class="ui-btn ui-btn-icon-right ui-li ui-btn-down-c ui-btn-up-c"><div class="ui-btn-inner"><a onclick="bind('+z+');" href="#page2" style="padding-top:0px" class="ui-link-inherit"><div class="ui-btn-text"><h3 id="'+z+'title">' + item.post_title + '</h3>'
+					+ '<p id="'+z+'date" class="ui-li-desc">'+item.post_date_gmt+'</p><div style="display:none" id="'+z+'desc">'+item.post_content+'</div></a><span class="ui-icon ui-icon-arrow-r"></span></li>';
+
+							output.append(landmark);
+						
+						});
+					}
+					
+				});
 			},
 			error: function(){
 				output.text('Hubo un error al cargar los datos');
@@ -100,12 +116,40 @@ $(document).ready(function (){
 <div class="app">
 <div id="deviceready" class="blink">
 	<p class="event listening">Connecting to Device</p>
-	<div id="output" class="event received">	
-
+	<div class="event received">	
+		<div data-role="page" id="page">
+			<div data-role="header">
+				<h1>Vizhole Business Channel News</h1>
+			</div>
+			<div data-role="content">	
+				<ul data-role="listview" class="output">
+				<!--
+			
+					<li><a href="#page2">Page Two</a></li>
+					<li><a href="#page3">Page Three</a></li>
+					<li><a href="#page4">Page Four</a></li>
+-->
+				</ul>		
+			</div>
+			<div data-role="footer">
+				<h4>2003 CopyRight</h4>
+			</div>
+		</div>
+		<div data-role="page" id="page2">
+			<div data-role="header">
+				<h1></h1>
+			</div>
+			<div data-role="content" class="output">	
+					
+			</div>
+			<div data-role="footer">
+				<h4>2003 CopyRight</h4>
+			</div>
+		</div>
 	</div>
 </div>
 </div>
-
+<script type="text/javascript" src="phonegap.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 <script type="text/javascript">
             app.initialize();
