@@ -42,6 +42,6 @@ name="permissions" value="none"
 
 <preference name="splash-screen-duration" value="4000"/>
 
-<access origin="http://127.0.0.1*"/>
+<access origin="*"/>
 
 </widget>
