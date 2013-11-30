@@ -45,7 +45,7 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
 
-		app.receivedEvent('deviceready');
+	//	app.receivedEvent('deviceready');
 				
     },
     // Update DOM on a Received Event
@@ -75,12 +75,12 @@ function bind(indexno){
 $(document).ready(function (){
 
 		var output = $('#output');
-
+/*
 		$.ajax({
-		//	url: 'http://triangon.com/phonegap-mysql/conex.php',
-			url: 'http://dosukyou.tk/wordpress/',
+			url: 'http://triangon.com/phonegap-mysql/conex.php',
+		//	url: 'http://dosukyou.tk/wordpress/',
 			dataType: 'html',
-			timeout: 5000,
+			timeout: 15000,
 			success: function(data, status){
 				$('.listening').hide();
 				output.append(data);
@@ -89,7 +89,48 @@ $(document).ready(function (){
 				output.text('Hubo un error al cargar los datos');
 			}
 		});	
+*/
+		$.ajax({
+		//	url: 'http://triangon.com/phonegap-mysql/conex.php',
+		//	url: 'http://www.vizhole.com/temp/t1.php?q=' + keyword+ '&maxResults=2',
+		//	url: 'http://dosukyou.tk/wordpress/?json=1',
+			url: 'http://dosukyou.tk/wordpress/',
+			dataType: 'html',
+			data: content, 
+			//jsonp: 'jsoncallback',
+			timeout: 15000,
+			success: function(data, status){
+				alert(data);
+			/*
+				$.each(data, function(i,obj){
+	
+					
+					if(typeof obj == "object"  ) {  // 
+						
+						$.each(obj, function(z, item) {
+							alert(item);
+						
+					// ui-li-has-thumb 
+						var landmark = '<a class="rsImg" data-rsVideo="https://vimeo.com/41132461" href="http://b.vimeocdn.com/ts/284/709/284709146_640.jpg"><div class="rsTmb"><h5>Barcode Band</h5>' 
+						 + '<span>by Kang woon Jin</span></div></a>';
 
+						  
+      
+							output.append(landmark);
+						
+						});
+						
+					}
+				
+					
+				});
+				royalSlider();
+			*/
+			},
+			error: function(){
+				output.text('Hubo un error al cargar los datos');
+			}
+		});	
 });
 
 	

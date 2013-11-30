@@ -185,26 +185,29 @@ $(document).ready(function() {
   $('input.search-field').val(keyword);
   $('input.search-field').focus();
   
-  getAjaxSearchResult();
+  document.location.href = "http://dosukyou.tk/wordpress/";
+  //getAjaxSearchResult(keyword);
 });
 
-function getAjaxSearchResult(){
+function getAjaxSearchResult(keyword){
 
 		var output = $('#page div#video-gallery');
-
+		alert ('http://www.vizhole.com/temp/t1.php?q=' + keyword+ '&maxResults=2');
 		$.ajax({
 		//	url: 'http://triangon.com/phonegap-mysql/conex.php',
+		//	url: 'http://www.vizhole.com/temp/t1.php?q=' + keyword+ '&maxResults=2',
 			url: 'http://dosukyou.tk/wordpress/?json=1',
 			dataType: 'json',
 			jsonp: 'jsoncallback',
 			timeout: 15000,
 			success: function(data, status){
 				$.each(data, function(i,obj){
+	
 					
-					if(typeof obj == "object" && obj.length == 10 ) {
+					if(typeof obj == "object"  ) {  // 
 						
 						$.each(obj, function(z, item) {
-							//alert(val.post_title);
+							alert(item);
 						
 					// ui-li-has-thumb 
 						var landmark = '<a class="rsImg" data-rsVideo="https://vimeo.com/41132461" href="http://b.vimeocdn.com/ts/284/709/284709146_640.jpg"><div class="rsTmb"><h5>Barcode Band</h5>' 
@@ -217,6 +220,7 @@ function getAjaxSearchResult(){
 						});
 						
 					}
+				
 					
 				});
 				royalSlider();
@@ -225,8 +229,22 @@ function getAjaxSearchResult(){
 				output.text('Hubo un error al cargar los datos');
 			}
 		});	
-
-
+/*
+		var output = $('#received');
+		$.ajax({
+			url: 'http://triangon.com/phonegap-mysql/conex.php',
+		//	url: 'http://dosukyou.tk/wordpress/',
+			dataType: 'html',
+			timeout: 25000,
+			success: function(data, status){
+			//	$('.listening').hide();
+				output.append(data);
+			},
+			error: function(){
+				output.text('Hubo un error al cargar los datos');
+			}
+		});	
+		*/
 }
 
 
@@ -260,7 +278,7 @@ else    return results[1];
 		</ul>
 		</li>
 		<li id="menu-item-343222" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-343222"><a href="http://flashgame.vizhole.com">Flash Game</a></li>
-		</ul></div>					<form role="search" method="get" class="search-form" action="index4.html">
+		</ul></div>					<form role="search" method="get" class="search-form" action="index.html">
 						<label>
 							<span class="screen-reader-text">Search for:</span>
 							<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" title="Search for:" />
@@ -349,7 +367,7 @@ else    return results[1];
 	</div>
 </div>
 </div>
-<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/index_new.js"></script>
 <script type="text/javascript">
             app.initialize();
 </script>
